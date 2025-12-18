@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {FaShoppingCart} from "react-icons/fa";
+import ProductViewModal from "./ProductViewModal.jsx";
 
 const ProductCard = ({
                          id: productId,
@@ -49,7 +50,7 @@ const ProductCard = ({
                 <h2 onClick={() => {
                     handleProductView(
                         {
-                            productId,
+                            id: productId,
                             productName,
                             image,
                             description,
@@ -83,9 +84,9 @@ const ProductCard = ({
 
                     ) : (
                         <span className="text-xl font-bold text-slate-700">
-                        {" "} {/** Parce que dans le if, on affiche deux nombres, ici on met une ligne vide pour équilibrer **/}
+                            {" "} {/** Parce que dans le if, on affiche deux nombres, ici on met une ligne vide pour équilibrer **/}
                             ${Number(price).toFixed(2)}
-                    </span>
+                        </span>
                     )}
 
                     <button
@@ -100,6 +101,12 @@ const ProductCard = ({
                     </button>
                 </div>
             </div>
+            <ProductViewModal
+                open={openProductViewModal}
+                setOpen={setOpenProductViewModal}
+                product={selectedViewProduct}
+                isAvailable={isAvailable}
+            />
         </div>
     )
 }
