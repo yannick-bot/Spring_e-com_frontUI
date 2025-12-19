@@ -1,10 +1,24 @@
 import ProductCard from "./ProductCard.jsx";
 import {FaExclamationTriangle} from "react-icons/fa";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {fetchProducts} from "../store/actions/index.js";
 
 const Products = () => {
     const isLoading = false; // pour savoir si on est entrain de charger les données du backend lors d'un appel
     const errorMessage = ""; // chaine vide par defaut
-    const products = [
+    const {products} = useSelector(
+        (state) => state.products
+    )
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, [dispatch]) // on veut récupérer les produits un seule fois, au montage du composant
+
+
+
+    /*const products = [
         {
             productId: 652,
             productName: "Iphone Xs max",
@@ -25,7 +39,7 @@ const Products = () => {
             discount: 20.0,
             specialPrice: 2040.0,
         }
-    ];
+    ];*/
     return (
         <div className="lg:px-14 sm:px-18 px-4 py-14 2xl:w-[90%] 2xl:mx-auto">
             {isLoading ? (
