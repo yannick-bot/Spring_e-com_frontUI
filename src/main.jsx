@@ -4,11 +4,14 @@ import './index.css'
 import App from './App.jsx'
 import {Provider} from "react-redux";
 import store from "./store/reducers/store.js";
+import {BrowserRouter} from "react-router-dom";
 
 createRoot(document.getElementById('root')).render(
     <Provider store={store}> {/* Pour rendre le store accessible dans toute l'application  */}
         <StrictMode>
-            <App />
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
         </StrictMode>,
     </Provider>
 )
