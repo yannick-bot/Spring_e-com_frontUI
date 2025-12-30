@@ -5,14 +5,7 @@ import {FiArrowDown, FiArrowUp, FiRefreshCw, FiSearch} from "react-icons/fi";
 import {FormControl, InputLabel, MenuItem, Select, Tooltip, Button} from "@mui/material";
 import {useSearchParams, useNavigate, useLocation} from "react-router-dom";
 
-const Filter = () => {
-    const categories = [
-        {categoryId: 1, categotyName: "Electronics"},
-        {categoryId: 2, categotyName: "Clothing"},
-        {categoryId: 3, categotyName: "Furniture"},
-        {categoryId: 4, categotyName: "Books"},
-        {categoryId: 5, categotyName: "Toys"},
-    ];
+const Filter = ({ categories }) => {
 
     const [searchParams] = useSearchParams(); // permet de lire et de mettre à jour le paramètre de requête de l'url
     const params = new URLSearchParams(searchParams); // URLSearchParams est une interface qui vous permet de definir et de manipuler facilement
@@ -93,8 +86,8 @@ const Filter = () => {
                     <Select className="min-w-[120px] text-slate-800 border-slate-700" labelId="category-select-label" value={category} onChange={handleCategoryChange} label="Category">
                         <MenuItem value="all">All</MenuItem>
                         {categories.map((item) => (
-                            <MenuItem key={item.categoryId} value={item.categotyName}>
-                                {item.categotyName}
+                            <MenuItem key={item.categoryId} value={item.categoryName}>
+                                {item.categoryName}
                             </MenuItem>
                         ))}
                     </Select>
