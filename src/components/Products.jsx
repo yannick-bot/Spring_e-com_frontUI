@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {fetchProducts} from "../store/actions/index.js";
 import Filter from "./Filter.jsx";
+import useProductFilter from "./useProductFilter.jsx";
 
 const Products = () => {
 
@@ -15,11 +16,7 @@ const Products = () => {
         (state) => state.products
     )
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]) // on veut récupérer les produits un seule fois, au montage du composant
-
+    useProductFilter();
 
     return (
         <div className="lg:px-14 sm:px-18 px-4 py-14 2xl:w-[90%] 2xl:mx-auto">
