@@ -7,6 +7,7 @@ import Filter from "./Filter.jsx";
 import useProductFilter from "./useProductFilter.jsx";
 import {RotatingLines} from "react-loader-spinner";
 import Loader from "./Loader.jsx";
+import Paginations from "./Paginations.jsx";
 
 const Products = () => {
 
@@ -14,7 +15,7 @@ const Products = () => {
         (state) => state.errors
     );
 
-    const {products, categories} = useSelector(
+    const {products, categories, pagination} = useSelector(
         (state) => state.products,
     )
     const dispatch = useDispatch();
@@ -42,6 +43,12 @@ const Products = () => {
                         {products && products.map((item, i) =>
                             <ProductCard key={i} {...item} />
                         )}
+                    </div>
+                    <div className="flex justify-center pt-10">
+                        <Paginations
+                            numberOfPage = {pagination?.totalPages}
+                            totalProducts = {pagination?.totalElements}
+                        />
                     </div>
                 </div>
             ) }
