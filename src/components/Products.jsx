@@ -5,6 +5,8 @@ import {useEffect} from "react";
 import {fetchCategories} from "../store/actions/index.js";
 import Filter from "./Filter.jsx";
 import useProductFilter from "./useProductFilter.jsx";
+import {RotatingLines} from "react-loader-spinner";
+import Loader from "./Loader.jsx";
 
 const Products = () => {
 
@@ -26,7 +28,7 @@ const Products = () => {
         <div className="lg:px-14 sm:px-18 px-4 py-14 2xl:w-[90%] 2xl:mx-auto">
             <Filter categories={categories ? categories : []}/>
             {isLoading ? (
-               <p>It is loading...</p>
+                <Loader />
             ) : errorMessage ? (
                 <div className="flex justify-center items-center h-[200px]">
                     <FaExclamationTriangle className="text-slate-800 text-3xl mr-2" /> {/** icône pour afficher message d'erreur **/}
